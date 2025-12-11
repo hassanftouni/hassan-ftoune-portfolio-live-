@@ -68,7 +68,7 @@ A premium, credibility-first portfolio website for Hassan Ftouni, Full Stack Dev
    pnpm dev
    ```
 
-4. **Open [http://localhost:3000](http://localhost:3000) in your browser**
+4. **Open [http://localhost:3000](https://hassan-ftoune-portfolio-live.vercel.app/) in your browser**
 
 ## 📁 Project Structure
 
@@ -189,4 +189,4 @@ MIT License - feel free to use this template for your own portfolio.
 
 ---
 
-Built with ❤️ by [Hassan Ftouni](https://hassanftouni.me)
+Built with ❤️ by [Hassan Ftouni](https://hassan-ftoune-portfolio-live.vercel.app/)
