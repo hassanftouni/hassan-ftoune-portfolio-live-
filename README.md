@@ -4,7 +4,7 @@ A premium, credibility-first portfolio website for Hassan Ftouni, Full Stack Dev
 
 ## 🚀 Live Demo
 
-[View Live Portfolio](https://hassanftouni.me) (Replace with actual URL)
+[View Live Portfolio](https://hassan-ftoune-portfolio-live.vercel.app/) (Replace with actual URL)
 
 ## ✨ Features
 
