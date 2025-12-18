@@ -69,7 +69,7 @@ export function Header() {
                 <div className="relative h-9 w-9 rounded-xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-cyan-400/25 group-hover:shadow-xl">
                   {/* Standard IMG tag used here to avoid hydration conflicts */}
                   <img
-                    src="/my-avatar.JPG"
+                    src="/my-avatar.jpg"
                     alt="Hassan Ftouni"
                     width={36} 
                     height={36}
