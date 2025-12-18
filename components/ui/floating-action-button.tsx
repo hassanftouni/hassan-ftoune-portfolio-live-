@@ -40,7 +40,7 @@ const quickActions = [
   {
     icon: ExternalLink,
     label: "Hire Me",
-    href: "https://freelancer.com/u/NIDNASSER",
+    href: "https://freelancer.com/u/hassanftouni",
     color: "bg-accent hover:bg-accent/90 text-accent-foreground",
     description: "Start a project",
     external: true

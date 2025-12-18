@@ -70,7 +70,7 @@ export function Header() {
                   {/* Standard IMG tag used here to avoid hydration conflicts */}
                   <img
                     src="/my-avatar.JPG"
-                    alt="Abdelmajid NIDNASSER"
+                    alt="Hassan Ftouni"
                     width={36} 
                     height={36}
                     className="object-cover w-full h-full" 
@@ -166,7 +166,7 @@ export function Header() {
                       {/* Standard IMG tag used here to avoid hydration conflicts */}
                       <img
                         src="/my-avatar.JPG"
-                        alt="Abdelmajid NIDNASSER"
+                        alt="Hassan Ftouni"
                         width={40}  
                         height={40}
                         className="object-cover w-full h-full" 
@@ -174,8 +174,8 @@ export function Header() {
                     </div>
                     {/* Your Name and Title */}
                     <div>
-                      <div className="font-semibold text-white">Abdelmajid NIDNASSER</div>
-                      <div className="text-xs text-gray-400 font-mono">PhD Candidate & Data Engineer</div>
+                      <div className="font-semibold text-white">Hassan Ftouni</div>
+                      <div className="text-xs text-gray-400 font-mono">Full stack developer & Designer</div>
                     </div>
                   </Link>
                 </div>

@@ -24,7 +24,7 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Hassan Ftouni",
-            "jobTitle": "PhD Candidate & Data Engineer",
+            "jobTitle": "Full Stack Developer & Designer",
             "url": "https://hassanftouni.me",
             "logo": "https://hassanftouni.me/logo.png",
             "image": "https://hassanftouni.me/og-image.jpg",

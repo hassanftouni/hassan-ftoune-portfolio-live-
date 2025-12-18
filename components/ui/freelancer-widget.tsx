@@ -13,7 +13,7 @@ export function FreelancerWidget() {
         <div className="relative flex-shrink-0">
           <Image
             src="https://cdn3.f-cdn.com/ppic/287911125/logo/69037463/URwW7/CROPPED_profile_logo_WXFUH_151cc9cb96b043aab3c775ef1af05f3f.png?image-optimizer=force&format=webply&width=336"
-            alt="Abdelmajid NIDNASSER"
+            alt="Hassan Ftouni"
             width={80}
             height={80}
             className="rounded-full border-2 border-primary/30"
@@ -30,7 +30,7 @@ export function FreelancerWidget() {
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors underline decoration-primary/50"
               >
-                ABDELMAJID NIDNASSER
+                Hassan Ftouni
               </a>
             </h3>
             <p className="text-sm text-muted-foreground">
