@@ -129,7 +129,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 p-8">
                   <Image
-                    src="/my-avatar2.JPEG"
+                    src="/my-avatar2.jpeg"
                     alt="Hassan Ftouni"
                     width={400}
                     height={500}
