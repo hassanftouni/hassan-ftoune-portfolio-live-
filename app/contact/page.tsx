@@ -202,7 +202,7 @@ export default function ContactPage() {
                       {/* Freelancer Profile */}
                       <div className="flex items-center gap-4 p-3 rounded-lg border bg-card">
                         <Image
-                          src="/my-avatar.JPG"
+                          src="/my-avatar.jpg"
                           alt="Hassan Ftouni"
                           width={60}
                           height={60}
