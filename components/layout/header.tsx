@@ -165,7 +165,7 @@ export function Header() {
                     <div className="relative h-10 w-10 rounded-xl overflow-hidden">
                       {/* Standard IMG tag used here to avoid hydration conflicts */}
                       <img
-                        src="/my-avatar.JPG"
+                        src="/my-avatar.jpg"
                         alt="Hassan Ftouni"
                         width={40}  
                         height={40}
