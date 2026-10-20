@@ -1,60 +1,42 @@
-
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
-import { CursorGlow } from "@/components/ui/cursor-glow";
-import { PerformanceMonitor } from "@/components/ui/performance-monitor";
 
-const fontSans = FontSans({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const serif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif-display",
 });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-code" });
+
+const description =
+  "Hassan Ftouni is a software engineer in Beirut building web apps with Laravel, Django and React, and AI applications with RAG.";
 
 export const metadata: Metadata = {
-  title: "Hassan Ftouni — Full Stack Developer & Designer",
-  description: "Portfolio of Hassan Ftouni, a passionate Computer Science Engineer and PhD Candidate specializing in AI-driven systems, Natural Language Processing, and scalable data solutions. Explore my research, publications, projects, and collaborations.",
-  keywords: ["Software Engineer", "Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Portfolio", "Developer", "PhD Candidate", "Research"],
+  title: "Hassan Ftouni — Software engineer",
+  description,
   authors: [{ name: "Hassan Ftouni" }],
   creator: "Hassan Ftouni",
   metadataBase: new URL("https://hassanftouni.me"),
- 
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://hassanftouni.me",
-    siteName: "Hassan Ftouni Portfolio",
-    title: "Hassan Ftouni — Full Stack Developer & Designer",
-    description: "Portfolio of Hassan Ftouni, a passionate Computer Science Engineer and PhD Candidate specializing in AI-driven systems, Natural Language Processing, and scalable data solutions. Explore my research, publications, projects, and collaborations.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Hassan Ftouni — Full Stack Developer & Designer",
-      },
-    ],
+    siteName: "Hassan Ftouni",
+    title: "Hassan Ftouni — Software engineer",
+    description,
+    images: [{ url: "/hassanpro.jpeg", width: 1254, height: 1254, alt: "Hassan Ftouni" }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Hassan Ftouni — Full Stack Developer & Designer",
-    description: "Portfolio of Hassan Ftouni, a passionate Computer Science Engineer and PhD Candidate specializing in AI-driven systems, Natural Language Processing, and scalable data solutions. Explore my research, publications, projects, and collaborations.",
-    images: ["/og-image.jpg"],
+    card: "summary",
+    title: "Hassan Ftouni — Software engineer",
+    description,
+    images: ["/hassanpro.jpeg"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -63,27 +45,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <CursorGlow />
-          <PerformanceMonitor />
-        </ThemeProvider>
+    <html lang="en" className={`${inter.variable} ${serif.variable} ${mono.variable}`}>
+      <body className="min-h-screen font-sans">
+        {children}
+        <Analytics />
       </body>
     </html>
   );

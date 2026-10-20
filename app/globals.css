@@ -1,191 +1,143 @@
 @import "tailwindcss";
 
-:root {
-  --radius: 1rem;
-  
-  /* Dark theme based on smoky black #100C08 */
-  --background: 220 14% 5%; /* A slightly cooler, deeper dark */
-  --foreground: 0 0% 100%;
-  --card: 220 14% 8%;
-  --card-foreground: 0 0% 100%;
-  --popover: 220 14% 8%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 186 78% 52%; /* Cyan accent as primary */
-  --primary-foreground: 184 100% 8%;
-  --secondary: 220 14% 15%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 220 9% 45%;
-  --muted-foreground: 220 9% 68%;
-  --accent: 260 80% 65%; /* A secondary violet accent */
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 220 14% 15%;
-  --input: 220 14% 15%;
-  --ring: 186 78% 52%; /* Ring color matches primary */
-  
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+@theme {
+  --color-paper: #f6f4ef;
+  --color-paper-2: #eeebe3;
+  --color-ink: #1a1917;
+  --color-ink-2: #4a4741;
+  --color-muted: #8a857b;
+  --color-line: #dcd7cc;
+  --color-accent: #2f5d50;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono-code), ui-monospace, monospace;
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+html {
+  /* framer-motion measures scroll-linked animations relative to this; static breaks the math */
+  position: relative;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
-@keyframes gradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* Underline that grows on hover — used for inline links */
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+.link:hover,
+.link:focus-visible {
+  background-size: 100% 1px;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+/* Gentle entrance for the first screen only */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-@keyframes glow {
-  0%, 100% { 
-    box-shadow: 0 0 5px rgba(34, 211, 238, 0.2), 0 0 10px rgba(34, 211, 238, 0.1), 0 0 15px rgba(34, 211, 238, 0.05); 
-  }
-  50% { 
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2), 0 0 30px rgba(34, 211, 238, 0.1); 
-  }
+/* Circular badge on the hero photo */
+.badge-spin {
+  animation: orbit 14s linear infinite;
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
+/* Gentle bob for the floating "currently" tag */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-y {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+/* Rings that ripple out from the orbit's centre */
+@keyframes pulse-ring {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(2.2); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulse-ring 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+/* Nav links: the label rolls up and a copy rolls in from below */
+.roll-link {
+  overflow: hidden;
+  height: 1.25rem;
+  line-height: 1.25rem;
+}
+.roll-link span {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.roll-link span::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.roll-link:hover span {
+  transform: translateY(-100%);
+}
+
+/* Project rows: a soft panel sweeps in from the left on hover */
+.project-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  z-index: -1;
+  background: var(--color-paper-2);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-row:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Orbiting logos — rotate is a separate property from translate, so centering survives */
+@keyframes orbit {
   to { transform: rotate(360deg); }
 }
-
-@keyframes camera-flash {
-  0%, 90%, 100% { opacity: 0; }
-  95% { opacity: 1; }
+.orbit-spin {
+  animation: orbit 40s linear infinite;
+}
+.orbit:hover .orbit-spin {
+  animation-play-state: paused;
 }
 
-@keyframes photo-develop {
-  0% { 
-    opacity: 0; 
-    filter: blur(10px) brightness(2);
-  }
-  50% {
-    opacity: 0.5;
-    filter: blur(5px) brightness(1.5);
-  }
-  100% { 
-    opacity: 1; 
-    filter: blur(0px) brightness(1);
-  }
+/* Project rows: arrow slides in on hover */
+.project-row .arrow {
+  transform: translateX(-8px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+}
+.project-row:hover .arrow {
+  transform: translateX(0) rotate(-45deg);
+  opacity: 1;
 }
 
-@layer base {
-  * {
-    border-color: hsl(var(--border) / 0.2);
-    @apply transition-colors duration-300;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 6rem; /* Offset for fixed header */
-  }
-
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: Inter, var(--font-geist-sans), sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    background-image: radial-gradient(hsl(var(--border) / 0.15) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Inter, var(--font-geist-sans), sans-serif;
-  }
-  
-  .mono {
-    font-family: 'JetBrains Mono', var(--font-geist-mono), monospace;
-  }
-
-  ::selection {
-    background-color: hsl(var(--primary) / 0.7);
-    color: hsl(var(--primary-foreground));
-  }
-}
-
-/* Custom utilities */
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 4s ease-in-out infinite;
-}
-
-.text-glow {
-  text-shadow: 0 0 8px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.2);
-}
-
-.section-padding {
-  @apply py-16 md:py-24 lg:py-32;
-}
-
-.container-max {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
-}
-
-/* Utilities for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Custom scrollbar styles for gallery descriptions */
-.gallery-description-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.gallery-description-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.gallery-description-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-}
-
-.gallery-description-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Firefox scrollbar */
-.gallery-description-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-/* Hide header when modal is open */
-body.modal-open header {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-  transform: translateY(-100px) !important;
-  transition: all 0.3s ease;
+  html { scroll-behavior: auto; }
+  .rise, .orbit-spin, .badge-spin, .float-y, .pulse-ring { animation: none; }
 }

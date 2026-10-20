@@ -24,18 +24,24 @@ const nextConfig = {
   // Enable compression
   compress: true,
   
-  // Headers for better caching
+  // The site is a single page now — send old routes to the matching section
+  async redirects() {
+    return [
+      { source: '/projects/:path*', destination: '/#work', permanent: true },
+      { source: '/about', destination: '/#about', permanent: true },
+      { source: '/experience', destination: '/#experience', permanent: true },
+      { source: '/resume', destination: '/#experience', permanent: true },
+      { source: '/contact', destination: '/#contact', permanent: true },
+      { source: '/gallery', destination: '/', permanent: true },
+    ];
+  },
+
+  // Headers for better caching.
+  // Don't add a rule for /_next/static here: Next.js already caches those hashed files in
+  // production, and forcing "immutable" in dev makes the browser keep stale code (dev file
+  // names don't change between edits), which causes hydration mismatch errors.
   async headers() {
     return [
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
       {
         source: '/images/(.*)',
         headers: [
